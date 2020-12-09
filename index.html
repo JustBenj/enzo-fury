@@ -1,0 +1,138 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="screen">
+        <table id="modesTable">
+            <tbody>
+                <tr>
+                    <th id="summaryModeSelector" class="selected">summary</th>
+                    <th id="cpuModeSelector">CPU</th>
+                    <th id="gpuModeSelector">GPU</th>
+                    <th id="ramModeSelector">RAM</th>
+                    <th id="hddModeSelector">HDD</th>
+                    <th id="homeModeSelector">home</th>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tr>
+                
+            </tr>
+        </table>
+
+        <p class="hovered">
+            Example hovered text.
+        </p>
+        <p class="selected">
+            Example selected text.
+        </p>
+
+        <p style="text-align:right">
+            Right justified text wow
+        </p>
+    </div>
+
+    <script>
+        var modeIndSelected = 0;
+
+        var cpuInfo = [
+            {
+                name: "utilization",
+                minimum_value: 0,
+                maximum_value: 100,
+                current_value: 20
+            },
+            {
+                name: "temperature",
+                minimum_value: 20,
+                maximum_value: 90,
+                current_value: 60
+            },
+            {
+                name: "power",
+                minimum_value: 0,
+                maximum_value: 100,
+                current_value: 15
+            }
+        ];
+
+        var gpuInfo = [
+            {
+                name: "utilization",
+                minimum_value: 0,
+                maximum_value: 100,
+                current_value: 20
+            },
+            {
+                name: "temperature",
+                minimum_value: 20,
+                maximum_value: 90,
+                current_value: 60
+            },
+            {
+                name: "power",
+                minimum_value: 0,
+                maximum_value: 100,
+                current_value: 15
+            }
+        ];
+
+        var ramInfo = [
+            {
+                name: "utilization",
+                minimum_value: 0,
+                maximum_value: 16,
+                current_value: 4.3
+            }
+        ];
+
+        var hddInfo = [
+            {
+                name: "utilization",
+                minimum_value: 0,
+                maximum_value: 1024,
+                current_value: 100
+            }
+        ];
+    
+        var modesHTML = document.getElementById("modesTable").children[0].children[0].children;
+
+        function unselectAllModes(){
+            for (ind in modesHTML){
+                modesHTML[ind].className = "";
+            }
+        }
+        function hoverNextMode(){
+            if(modeIndSelected < 5){
+                modeIndSelected++;
+                unselectAllModes();
+                modesHTML[modeIndSelected].className = "selected";
+            }
+        }
+        function hoverPrevMode(){
+            if(modeIndSelected > 0){
+                modeIndSelected--;
+                unselectAllModes();
+                modesHTML[modeIndSelected].className = "selected";
+            }
+        }
+        function updateSubTable(){
+
+        }
+
+        function logKey(e) {
+            if(e.code == "KeyS"){
+                hoverNextMode();
+            }
+            else if(e.code == "KeyA"){
+                hoverPrevMode();
+            }
+            //console.log(e.code);
+        }
+
+        document.addEventListener('keypress', logKey);
+
+    </script>
+
+</body>
