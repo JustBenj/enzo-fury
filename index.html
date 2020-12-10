@@ -1,138 +1,773 @@
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/Chart.min.css">
+    <script src="include/Chart.bundle.min.js"></script>
+    <script src="include/Chart.PieChartLabels.min.js"></script>
 </head>
 <body>
     <div class="screen">
-        <table id="modesTable">
-            <tbody>
-                <tr>
-                    <th id="summaryModeSelector" class="selected">summary</th>
-                    <th id="cpuModeSelector">CPU</th>
-                    <th id="gpuModeSelector">GPU</th>
-                    <th id="ramModeSelector">RAM</th>
-                    <th id="hddModeSelector">HDD</th>
-                    <th id="homeModeSelector">home</th>
-                </tr>
-            </tbody>
-        </table>
-        <table>
-            <tr>
-                
-            </tr>
-        </table>
 
-        <p class="hovered">
-            Example hovered text.
-        </p>
-        <p class="selected">
-            Example selected text.
-        </p>
+        <svg>
+            <defs>
+                <linearGradient id="fadeToRight" x1="0%" x2="100%" y1="0%" y2="0%">
+                    <stop offset="0%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="80%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="100%" stop-color="rgb(0, 0, 0)" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="fadeToLeft" x1="100%" x2="0%" y1="0%" y2="0%">
+                    <stop offset="0%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="80%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="100%" stop-color="rgb(0, 0, 0)" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="fadeToDown" x1="0%" x2="0%" y1="0%" y2="100%">
+                    <stop offset="0%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="80%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="100%" stop-color="rgb(0, 0, 0)" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="fadeToUp" x1="0%" x2="0%" y1="100%" y2="0%">
+                    <stop offset="0%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="80%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
+                    <stop offset="100%" stop-color="rgb(0, 0, 0)" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+            <rect x="4" y="4" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
+            <rect x="4" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
 
-        <p style="text-align:right">
-            Right justified text wow
-        </p>
+            <rect x="376" y="4" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
+            <rect x="472" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
+
+            <rect x="4" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
+            <rect x="4" y="312" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
+
+            <rect x="376" y="312" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
+            <rect x="472" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
+
+        </svg>
+        <div class="screenContents">
+            <table id="modesTable" class="hardware-table">
+                <tbody>
+                    <tr>
+                        <th width="12.5%" id="summaryModeSelector" class="selected">summary</th>
+                        <th width="12.5%" id="cpuModeSelector">CPU</th>
+                        <th width="12.5%" id="gpuModeSelector" style="z-index: 5;">GPU</th>
+                        <th width="12.5%" id="ramModeSelector">RAM</th>
+                        <th width="12.5%" id="hddModeSelector">HDD</th>
+                        <th width="12.5%" id="homeModeSelector">home</th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="modesSubTable" class="modes-subtable">
+                <tbody>
+                    <tr>                
+                    </tr>
+                </tbody>
+            </table>
+
+            <div id="chartContainer" class="chart-container" style="width:90%; height:100%; margin: 0 auto;">
+                <canvas id="myChart"></canvas>
+            </div>
+
+            <div id="summaryCharts">
+                <div class="row">
+                    <div class="column">
+                        <div id="summaryChartContainer1" class="chart-container">
+                            <canvas id="summaryChart1" style="padding: 0; margin: 0"></canvas>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="summaryChartContainer2" class="chart-container" >
+                            <canvas id="summaryChart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <div id="summaryChartContainer3" class="chart-container" >
+                            <canvas id="summaryChart3"></canvas>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="summaryChartContainer4" class="chart-container" >
+                            <canvas id="summaryChart4"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <img class="imgs" id="imgs" src="img/fallout/0.png">
+            <audio controls hidden id="changeModeAudio">
+                <source src="mp3/ui_pipboy_mode.mp3" type="audio/mpeg">
+            </audio>
+            <audio controls hidden id="changeSubModeAudio">
+                <source src="mp3/ui_pipboy_scroll.mp3" type="audio/mpeg">
+            </audio>
+        </div>
     </div>
 
     <script>
         var modeIndSelected = 0;
-
-        var cpuInfo = [
-            {
-                name: "utilization",
-                minimum_value: 0,
-                maximum_value: 100,
-                current_value: 20
-            },
-            {
-                name: "temperature",
-                minimum_value: 20,
-                maximum_value: 90,
-                current_value: 60
-            },
-            {
-                name: "power",
-                minimum_value: 0,
-                maximum_value: 100,
-                current_value: 15
-            }
-        ];
-
-        var gpuInfo = [
-            {
-                name: "utilization",
-                minimum_value: 0,
-                maximum_value: 100,
-                current_value: 20
-            },
-            {
-                name: "temperature",
-                minimum_value: 20,
-                maximum_value: 90,
-                current_value: 60
-            },
-            {
-                name: "power",
-                minimum_value: 0,
-                maximum_value: 100,
-                current_value: 15
-            }
-        ];
-
-        var ramInfo = [
-            {
-                name: "utilization",
-                minimum_value: 0,
-                maximum_value: 16,
-                current_value: 4.3
-            }
-        ];
-
-        var hddInfo = [
-            {
-                name: "utilization",
-                minimum_value: 0,
-                maximum_value: 1024,
-                current_value: 100
-            }
-        ];
-    
+        var subModeSelected = 0;
+        var cpuInfo = ["utilization","temperature","power"];
+        var gpuInfo = ["utilization","temperature","power"];
+        var ramInfo = ["utilization"];
+        var hddInfo = ["utilization"];    
         var modesHTML = document.getElementById("modesTable").children[0].children[0].children;
+        var subModesHTML = null;
 
-        function unselectAllModes(){
+        var mychart = document.getElementById("myChart");
+
+        cpuUtilization = [23, 20, 30, 65, 70, 87, 54, 60, 20, 10, 3, 4, 2, 3, 15, 22, 4, 5, 40, 38];
+        cpuTemperatures = [50, 52, 54, 55, 58, 60, 61, 61, 62, 61, 61, 62, 60, 58, 58, 57, 56, 54, 53, 52];
+        cpuPowers = [3, 4, 10, 12, 13, 10, 14, 13, 15, 16, 12, 13, 14, 15, 15, 14, 13, 13, 12, 12];
+        gpuUtilization = [23, 20, 30, 65, 70, 87, 54, 60, 20, 10, 3, 4, 2, 3, 15, 22, 4, 5, 40, 38];
+        gpuTemperatures = [50, 52, 54, 55, 58, 60, 61, 61, 62, 61, 61, 62, 60, 58, 58, 57, 56, 54, 53, 52];
+        gpuPowers = [50, 55, 100, 130, 154, 129, 143, 148, 200, 230, 241, 251, 241, 200, 230, 194, 194, 174, 150, 100];
+        currentRamUse = 13.5;
+        currentAvailableRam = 2.5;
+        currentUsedHddSpace = 35.3;
+
+        datasets = [
+            {
+                label: "CPU utilization",
+                backgroundColor: "rgba(9, 105, 9, 1)",
+                borderColor: "rgba(5, 172, 5, 1)",
+                pointBackgroundColor: "rgba(5, 172, 5, 0)",
+                pointBorderColor: "rgba(5, 172, 5, 0)",
+                data: [],
+                hidden: false
+            },
+            {
+                label: "RAM usage",
+                data: [],
+                backgroundColor: ["rgba(9, 105, 9, 1)", "#222"],
+                borderColor: ["rgba(5, 172, 5)", "rgba(5, 172, 5)"],
+                hidden: false
+            }
+        ];
+        labels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+        options = [
+            {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Temp',
+                    fontColor: '#05ac05'
+                },
+                legend: {
+                    display: false
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales:{
+                    xAxes: [{
+                        display: true,
+                        ticks: {
+                            display: false
+                        },
+                        fontColor: '#05ac05',
+                        gridLines: {
+                            drawTicks: false,
+                            zeroLineColor: '#05ac05',
+                            color: "#096909"
+                        }                    
+                    }],
+                    yAxes: [{
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            fontColor: '#05ac05'
+                        }, 
+                        gridLines: {
+                            drawTicks: false,
+                            zeroLineColor: '#05ac05',
+                            color: "#096909"
+                        }
+                    }]
+                }
+            },
+            {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Temp',
+                    fontColor: '#05ac05'
+                },
+                legend: {
+                    display: true
+                },
+                circumference: Math.PI * (3/2),
+                rotation: Math.PI * (3/4),
+                plugins: {
+                    labels: {
+                        render: 'value',
+                        position: 'outside',
+                        fontColor: '#05ac05'
+                    }
+                }
+            }
+        ];
+      
+        summaryDatasets = [
+            {
+                label: "CPU util",
+                data: [],
+                backgroundColor: ["rgba(9, 105, 9, 1)", "#222"],
+                borderColor: ["rgba(5, 172, 5)", "rgba(5, 172, 5)"],
+                hidden: false
+            },
+            {
+                label: "GPU util",
+                data: [],
+                backgroundColor: ["rgba(9, 105, 9, 1)", "#222"],
+                borderColor: ["rgba(5, 172, 5)", "rgba(5, 172, 5)"],
+                hidden: false
+            },
+            {
+                label: "RAM used",
+                data: [],
+                backgroundColor: ["rgba(9, 105, 9, 1)", "#222"],
+                borderColor: ["rgba(5, 172, 5)", "rgba(5, 172, 5)"],
+                hidden: false
+            },
+            {
+                label: "HDD util",
+                data: [],
+                backgroundColor: ["rgba(9, 105, 9, 1)", "#222"],
+                borderColor: ["rgba(5, 172, 5)", "rgba(5, 172, 5)"],
+                hidden: false
+            }
+        ];
+        summaryOptions = [
+            {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'CPU util (%)',
+                    fontColor: '#05ac05'
+                },
+                legend: {
+                    display: false
+                },
+                circumference: Math.PI * (3/2),
+                rotation: Math.PI * (3/4),
+                plugins: {
+                    labels: {
+                        render: 'value',
+                        position: 'outside',
+                        fontColor: '#05ac05'
+                    }
+                }
+            },
+            {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'GPU util (%)',
+                    fontColor: '#05ac05'
+                },
+                legend: {
+                    display: false
+                },
+                circumference: Math.PI * (3/2),
+                rotation: Math.PI * (3/4),
+                plugins: {
+                    labels: {
+                        render: 'value',
+                        position: 'outside',
+                        fontColor: '#05ac05'
+                    }
+                }
+            },
+            {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'RAM used (%)',
+                    fontColor: '#05ac05'
+                },
+                legend: {
+                    display: false
+                },
+                circumference: Math.PI * (3/2),
+                rotation: Math.PI * (3/4),
+                plugins: {
+                    labels: {
+                        render: 'value',
+                        position: 'outside',
+                        fontColor: '#05ac05'
+                    }
+                }
+            },
+            {
+                responsive: true,
+                maintainAspectRatio: false,
+                title: {
+                    display: true,
+                    text: 'HDD used (%)',
+                    fontColor: '#05ac05'
+                },
+                legend: {
+                    display: false
+                },
+                circumference: Math.PI * (3/2),
+                rotation: Math.PI * (3/4),
+                plugins: {
+                    labels: {
+                        render: 'value',
+                        position: 'outside',
+                        fontColor: '#05ac05'
+                    }
+                }
+            }
+        ];
+        
+        var chart = null;
+        var summaryCharts = [];
+
+        var imgMode = 0;
+        var imgInd = 0;
+        var numFriendPics = 9;
+        var numFalloutPics = 19;
+
+        function changeMode(diff){
+            modeIndSelected += diff;
+            if(modeIndSelected < 0) modeIndSelected = 0;
+            if(modeIndSelected >= modesHTML.length) modeIndSelected = modesHTML.length - 1;
+            
+            // Update table on top
             for (ind in modesHTML){
                 modesHTML[ind].className = "";
-            }
-        }
-        function hoverNextMode(){
-            if(modeIndSelected < 5){
-                modeIndSelected++;
-                unselectAllModes();
-                modesHTML[modeIndSelected].className = "selected";
-            }
-        }
-        function hoverPrevMode(){
-            if(modeIndSelected > 0){
-                modeIndSelected--;
-                unselectAllModes();
-                modesHTML[modeIndSelected].className = "selected";
-            }
-        }
-        function updateSubTable(){
+            }            
+            modesHTML[modeIndSelected].className = "selected";
 
+            // Update subtable
+            var modesSubTable = document.getElementById("modesSubTable");
+            modesSubTable.children[0].children[0].innerHTML = "";
+            var childElements = [];
+
+            var wholeTableRect = document.getElementById("modesTable").getBoundingClientRect();
+            var abovethRect = modesHTML[modeIndSelected].getBoundingClientRect();
+
+            if(modeIndSelected == 0){
+                // summary selected
+            }
+            else if(modeIndSelected == 1){
+                // CPU selected
+                for (ind in cpuInfo){
+                    var element = document.createElement("td");
+                    element.innerHTML = cpuInfo[ind];
+                    element.style.width = (100 / cpuInfo.length) + "%";
+                    modesSubTable.children[0].children[0].appendChild(element);
+                }
+            }
+            else if(modeIndSelected == 2){
+                // GPU selected
+                for (ind in gpuInfo){
+                    var element = document.createElement("td");
+                    element.innerHTML = cpuInfo[ind];
+                    element.style.width = (100 / gpuInfo.length) + "%";
+                    modesSubTable.children[0].children[0].appendChild(element);
+                }
+            }
+            else if(modeIndSelected == 3){
+                // RAM selected
+                for (ind in ramInfo){
+                    var element = document.createElement("td");
+                    element.innerHTML = cpuInfo[ind];
+                    element.style.width = (100 / ramInfo.length) + "%";
+                    modesSubTable.children[0].children[0].appendChild(element);
+                }
+            }
+            else if(modeIndSelected == 4){
+                // HDD selected
+                for (ind in hddInfo){
+                    var element = document.createElement("td");
+                    element.innerHTML = cpuInfo[ind];
+                    element.style.width = (100 / hddInfo.length) + "%";
+                    modesSubTable.children[0].children[0].appendChild(element);
+                }
+            }
+            else{
+                // home selected
+            }        
+            modesSubTable.children = childElements;    
+            var left = (abovethRect.left / wholeTableRect.width) - 0.2 + (abovethRect.width / wholeTableRect.width) / 2;
+            modesSubTable.style.marginLeft = (left*100) + "%";
+
+            subModesHTML = modesSubTable.children[0].children[0].children;
+            changeSubMode(0);
         }
 
-        function logKey(e) {
+        function changeSubMode(diff){
+            subModeSelected += diff;
+            if(subModeSelected >= subModesHTML.length) subModeSelected = subModesHTML.length - 1;
+            if(subModeSelected < 0) subModeSelected = 0;
+            
+            if(subModesHTML.length > 0){
+                for (ind in subModesHTML){
+                    if(ind == subModeSelected){
+                        subModesHTML[ind].className = "hovered";
+                    }
+                    else{
+                        subModesHTML[ind].className = "";
+                    }
+                }
+            }
+            changeChart();
+        }
+
+        function changeChart(){
+            if(modeIndSelected > 0 && modeIndSelected < 5){
+                summaryCharts = []
+                document.getElementById("summaryCharts").hidden = true;
+                document.getElementById("chartContainer").hidden = false;
+                document.getElementById("imgs").hidden = true;
+            }
+            else if(modeIndSelected == 0){
+                chart = null;
+                document.getElementById("summaryCharts").hidden = false;
+                document.getElementById("chartContainer").hidden = true;                
+                document.getElementById("imgs").hidden = true;
+            }
+            else if(modeIndSelected == 5){
+                chart = null;
+                summaryCharts = []
+                document.getElementById("summaryCharts").hidden = true;
+                document.getElementById("chartContainer").hidden = true;                
+                document.getElementById("imgs").hidden = false;
+            }
+            if(modeIndSelected == 0){
+                summaryCharts = [null, null, null, null];
+                var summaryChart1 = document.getElementById("summaryChart1");
+                var summaryChart2 = document.getElementById("summaryChart2");
+                var summaryChart3 = document.getElementById("summaryChart3");
+                var summaryChart4 = document.getElementById("summaryChart4");
+                
+                summaryDatasets[0].data = [cpuUtilization[cpuUtilization.length - 1].toFixed(2), 
+                (100 - cpuUtilization[cpuUtilization.length - 1]).toFixed(2)];
+                var sChart1 = new Chart(summaryChart1.getContext("2d"), {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [summaryDatasets[0]],
+                        labels: ["", ""]
+                    },
+                    options: summaryOptions[0]
+                });
+                summaryCharts[0] = sChart1;
+                
+                summaryDatasets[1].data = [gpuUtilization[gpuUtilization.length - 1].toFixed(2), 
+                (100 - cpuUtilization[gpuUtilization.length - 1]).toFixed(2)];
+                var sChart2 = new Chart(summaryChart2.getContext("2d"), {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [summaryDatasets[1]],
+                        labels: ["", ""]
+                    },
+                    options: summaryOptions[1]
+                });
+                summaryCharts[1] = sChart2;
+                
+                summaryDatasets[2].data = [currentRamUse, currentAvailableRam];
+                var sChart3 = new Chart(summaryChart3.getContext("2d"), {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [summaryDatasets[2]],
+                        labels: ["", ""]
+                    },
+                    options: summaryOptions[2]
+                });
+                summaryCharts[2] = sChart3;
+
+                summaryDatasets[3].data = [currentRamUse, currentAvailableRam];
+                var sChart4 = new Chart(summaryChart4.getContext("2d"), {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [summaryDatasets[3]],
+                        labels: ["", ""]
+                    },
+                    options: summaryOptions[3]
+                });
+                summaryCharts[3] = sChart4;
+            }
+            else if(modeIndSelected == 1){
+                if(subModeSelected == 0){
+                    options[0].title.text = "CPU utilization (%)";
+                    options[0].scales.yAxes[0].ticks.suggestedMin = 0;
+                    options[0].scales.yAxes[0].ticks.suggestedMax = 100;
+                    datasets[0].data = cpuUtilization;
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [datasets[0]]
+                        },
+                        options: options[0]
+                    });
+                }
+                else if(subModeSelected == 1){
+                    options[0].title.text = "CPU temperature (C)";
+                    options[0].scales.yAxes[0].ticks.suggestedMin = 20;
+                    options[0].scales.yAxes[0].ticks.suggestedMax = 70;
+                    datasets[0].data = cpuTemperatures;
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [datasets[0]]
+                        },
+                        options: options[0]
+                    });
+                }
+                else if(subModeSelected == 2){
+                    options[0].title.text = "CPU power (Watts)";
+                    options[0].scales.yAxes[0].ticks.suggestedMin = 0;
+                    options[0].scales.yAxes[0].ticks.suggestedMax = 50;
+                    datasets[0].data = cpuPowers;                    
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [datasets[0]]
+                        },
+                        options: options[0]
+                    });
+                }
+            }
+            else if(modeIndSelected == 2){
+                if(subModeSelected == 0){
+                    options[0].title.text = "GPU utilization (%)";
+                    options[0].scales.yAxes[0].ticks.suggestedMin = 0;
+                    options[0].scales.yAxes[0].ticks.suggestedMax = 100;
+                    datasets[0].data = gpuUtilization;                    
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [datasets[0]]
+                        },
+                        options: options[0]
+                    });
+                }
+                else if(subModeSelected == 1){
+                    options[0].title.text = "GPU temperature (C)";
+                    options[0].scales.yAxes[0].ticks.suggestedMin = 20;
+                    options[0].scales.yAxes[0].ticks.suggestedMax = 70;
+                    datasets[0].data = gpuTemperatures;                    
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [datasets[0]]
+                        },
+                        options: options[0]
+                    });
+                }
+                else if(subModeSelected == 2){
+                    options[0].title.text = "GPU power (Watts)";
+                    options[0].scales.yAxes[0].ticks.suggestedMin = 0;
+                    options[0].scales.yAxes[0].ticks.suggestedMax = 350;
+                    datasets[0].data = gpuPowers;                    
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [datasets[0]]
+                        },
+                        options: options[0]
+                    });
+                }
+            }
+            else if(modeIndSelected == 3){
+                if(subModeSelected == 0){
+                    options[1].title.text = "RAM usage (GB)";
+                    datasets[1].data = [currentRamUse, currentAvailableRam];
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [datasets[1]],
+                            labels: ["In use", "Available"]
+                        },
+                        options: options[1]
+                    });
+                }
+            }
+            else if(modeIndSelected == 4){
+                if(subModeSelected == 0){
+                    options[1].title.text = "HDD space (%)";
+                    datasets[1].data = [currentUsedHddSpace, (100 - currentUsedHddSpace).toFixed(2)];
+                    chart = new Chart(mychart.getContext("2d"), {
+                        type: 'doughnut',
+                        data: {
+                            datasets: [datasets[1]],
+                            labels: ["In use", "Available"]
+                        },
+                        options: options[1]
+                    });
+                }
+            }
+            else if(modeIndSelected == 5){
+
+            }
+        }
+
+        function updateChartData(){
+            if(modeIndSelected == 0){
+                summaryDatasets[0].data = [cpuUtilization[cpuUtilization.length - 1].toFixed(2), 
+                (100 - cpuUtilization[cpuUtilization.length - 1]).toFixed(2)];
+                summaryDatasets[1].data = [gpuUtilization[gpuUtilization.length - 1].toFixed(2), 
+                (100 - cpuUtilization[gpuUtilization.length - 1]).toFixed(2)];
+                summaryDatasets[2].data = [currentRamUse, currentAvailableRam];
+                summaryDatasets[3].data = [currentRamUse, currentAvailableRam];
+            }
+            else if(modeIndSelected == 1){
+                if(subModeSelected == 0){
+                    datasets[0].data = cpuUtilization;
+                    console.log("updated");
+                }
+                else if(subModeSelected == 1){
+                    datasets[0].data = cpuTemperatures;
+                }
+                else if(subModeSelected == 2){
+                    datasets[0].data = cpuPowers; 
+                }
+            }
+            else if(modeIndSelected == 2){
+                if(subModeSelected == 0){
+                    datasets[0].data = gpuUtilization;    
+                }
+                else if(subModeSelected == 1){
+                    datasets[0].data = gpuTemperatures;  
+                }
+                else if(subModeSelected == 2){
+                    datasets[0].data = gpuPowers;
+                }
+            }
+            else if(modeIndSelected == 3){
+                if(subModeSelected == 0){
+                    datasets[1].data = [currentRamUse, currentAvailableRam];       
+                }         
+            }
+            else if(modeIndSelected == 4){
+                if(subModeSelected == 0){
+                    datasets[1].data = [currentUsedHddSpace, (100 - currentUsedHddSpace).toFixed(2)];
+                }
+            }
+            else if(modeIndSelected == 5){
+
+            }
+            if(chart != null){
+                chart.update();
+            }
+            if (summaryCharts.length > 0){
+                for (i in summaryCharts){
+                    summaryCharts[i].update();
+                }
+            }
+        }
+
+        function keyPress(e) {
             if(e.code == "KeyS"){
-                hoverNextMode();
+                playModeChange();
+                changeMode(1);
             }
             else if(e.code == "KeyA"){
-                hoverPrevMode();
+                playModeChange();
+                changeMode(-1);
+            }
+            else if(e.code == "KeyZ"){
+                playSubModeChange();
+                changeSubMode(-1);
+            }
+            else if(e.code == "KeyX"){
+                playSubModeChange();
+                changeSubMode(1);
+            }
+            else if(e.code == "KeyQ"){
+                changePictureMode(0);
+            }
+            else if(e.code == "KeyW"){
+                changePictureMode(1);
+            }
+            else if(e.code == "KeyE"){
             }
             //console.log(e.code);
         }
+        
+        function playModeChange(){
+            var sound = document.getElementById("changeModeAudio");
+            sound.pause();
+            sound.currentTime = 0;
+            sound.play();
+        }
+        function playSubModeChange(){
+            var sound = document.getElementById("changeSubModeAudio");
+            sound.pause();
+            sound.currentTime = 0;
+            sound.play();
+        }
+        function addRandomData(){
+            cpuUtilization.push(Math.random() * 100);             
+            if(cpuUtilization.length > labels.length){
+                cpuUtilization.shift();
+            }
+            gpuUtilization.push(Math.random() * 100);             
+            if(gpuUtilization.length > labels.length){
+                gpuUtilization.shift();
+            }
+            cpuTemperatures.push(Math.random() * 40 + 20);             
+            if(cpuTemperatures.length > labels.length){
+                cpuTemperatures.shift();
+            }
+            gpuTemperatures.push(Math.random() * 40 + 20);             
+            if(gpuTemperatures.length > labels.length){
+                gpuTemperatures.shift();
+            }
+            cpuPowers.push(Math.random() * 40 + 5);             
+            if(cpuPowers.length > labels.length){
+                cpuPowers.shift();
+            }
+            gpuPowers.push(Math.random() * 350 + 0);             
+            if(gpuPowers.length > labels.length){
+                gpuPowers.shift();
+            }
+            currentRamUse = (Math.random() * 16).toFixed(2);
+            currentAvailableRam = (16 - currentRamUse).toFixed(2);
+            currentUsedHddSpace = (Math.random() * 100).toFixed(2);
+            
+            updateChartData();
+            
+        }
+        
+        function changePictureMode(mode){
+            imgMode = mode;
+            changePicture(0);
+        }
+        
+        function changePicture(diff){
+            imgInd += diff;  
+            if(imgMode == 0){      
+                document.getElementById("imgs").src = "img/friends/"+(imgInd % numFriendPics)+".png";
+            }
+            else if(imgMode == 1){      
+                document.getElementById("imgs").src = "img/fallout/"+(imgInd % numFalloutPics)+".png";
+            }
+        }
 
-        document.addEventListener('keypress', logKey);
-
+        document.addEventListener('keypress', keyPress);
+        window.setInterval(addRandomData, 500);
+        window.setInterval(function(){
+            changePicture(1);
+        }, 1000);
+        window.onload = (event) => {
+            console.log('page is fully loaded');
+            changeChart();
+        };
     </script>
 
 </body>

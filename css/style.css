@@ -1,0 +1,144 @@
+body{
+    background-color:#000;
+    margin:0;
+    overflow:hidden;
+    padding:0;
+}
+  
+.hardware-table{
+    width: 100%;
+    animation:colorPulse 5s infinite ease-in-out;
+    border: none;
+}
+.modes-subtable{
+    width: 40%;
+    animation:colorPulse 5s infinite ease-in-out;
+    border: none;
+    font-size:8px;
+    text-align: center;
+}
+
+.row{
+    height: 135px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.column{
+    width: 220px;
+    height: 100%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+svg{
+    height:320px;
+    width:480px;
+    left: 0;
+    top: 0;
+    position: absolute;
+}
+.screen {
+    animation:colorPulse 5s infinite ease-in-out;
+    background-image:radial-gradient(#222, #000);
+    box-shadow:0 0 5vmin 1vmin #000 inset;
+    box-sizing:border-box;
+    font-family:'Fira Mono', monospace;
+    font-size:12px;
+    /*height:100vh;*/
+    height:320px;
+    overflow:hidden;
+    /*padding:10vmin;*/
+    /*width:100vw;*/
+    width:480px;
+    z-index: 0;
+}
+
+.screenContents{
+    z-index: 4;
+    margin: 2%;
+}
+
+
+.screen:before {
+    animation:wave 10s infinite ease-in-out;
+    content:"";
+    height:40vh;
+    left:0;
+    opacity:.1;
+    position:absolute;
+    right:0;
+    z-index:0;
+}
+
+.imgs{
+    position: absolute;
+    left: 10;
+    top: 40;
+    width: 460px;
+    height: 270px;
+}
+
+.screenContents:before {
+    background-image:linear-gradient(transparent 1px, transparent 2px, rgb(7, 73, 15) 1px);
+    background-size:4px 4px;
+    content:"";
+    bottom:0;
+    left:0;
+    right:0;
+    top:0;    
+    pointer-events:none;
+    position:absolute;    
+    opacity:0.1;
+    z-index:6;
+}
+
+.hovered{
+    animation:blink 1s infinite;
+}
+
+.selected{
+    background-color:#096909;
+    outline: 2px solid rgb(5, 172, 5);
+}
+/*
+p:last-child:after {
+    animation:blink 1s infinite;
+    content:"_";
+}
+*/
+@keyframes colorPulse {
+    0%, 100% {
+        color:#0c0;
+    }
+    48%, 52% {
+        color:#090;
+    }
+    50% {
+        color:rgb(2, 133, 2);
+    }
+}
+
+@keyframes wave {
+    0% {
+        box-shadow:0 -10vh 20vh #0c0;
+        top:-100vh;
+    }
+    48%, 52% {
+        box-shadow:0 -10vh 20vh #090;
+    }
+    50% {
+        box-shadow:0 -10vh 20vh #060;
+    }
+    100% {
+        box-shadow:0 -10vh 20vh #0c0;
+        top:200vh;
+    }
+}
+
+@keyframes blink {
+    50% {
+        opacity:0;
+    }
+}
