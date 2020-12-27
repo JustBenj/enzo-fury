@@ -5,9 +5,9 @@
     <script src="include/Chart.PieChartLabels.min.js"></script>
 </head>
 <body>
-    <div class="screen">
+    <div id="screen" class="screen">
 
-        <svg>
+        <svg id="svgstuff">
             <defs>
                 <linearGradient id="fadeToRight" x1="0%" x2="100%" y1="0%" y2="0%">
                     <stop offset="0%" stop-color="rgb(10, 165, 28)" stop-opacity="1" />
@@ -30,21 +30,11 @@
                     <stop offset="100%" stop-color="rgb(0, 0, 0)" stop-opacity="0" />
                 </linearGradient>
             </defs>
-            <rect x="4" y="4" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
-            <rect x="4" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
-
-            <rect x="376" y="4" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
-            <rect x="472" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
-
-            <rect x="4" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
-            <rect x="4" y="312" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
-
-            <rect x="376" y="312" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
-            <rect x="472" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
+            
 
         </svg>
         <div class="screenContents">
-            <table id="modesTable" class="hardware-table">
+            <table id="modesTable" class="hardware-table" style="width:94%;padding-left:3%;padding-top:3%">
                 <tbody>
                     <tr>
                         <th width="12.5%" id="summaryModeSelector" class="selected">summary</th>
@@ -765,6 +755,82 @@
             changePicture(1);
         }, 1000);
         window.onload = (event) => {
+            console.log(document.getElementById("svgstuff").innerHTML);
+            /*
+            <rect x="4" y="4" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
+            <rect x="4" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
+
+            <rect x="376" y="4" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
+            <rect x="472" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
+
+            <rect x="4" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
+            <rect x="4" y="312" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
+
+            <rect x="376" y="312" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
+            <rect x="472" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
+            */
+            left_offset = 10;
+            top_offset = 10;
+            bottom_offset = 4;
+            right_offset = 4;
+            screen_width = 480;
+            screen_height = 320;
+            outline_length = 100;
+            outline_width = 4;
+            
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+left_offset+
+            '" y="'+top_offset+
+            '" width="'+outline_length+
+            '" height="'+outline_width+
+            '" fill="url(#fadeToRight)" stroke-width="0" />';
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+left_offset+
+            '" y="'+top_offset+
+            '" width="'+outline_width+
+            '" height="'+outline_length+
+            '" fill="url(#fadeToDown)" stroke-width="0" />';
+
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+(screen_width-outline_length-left_offset)+
+            '" y="'+top_offset+
+            '" width="'+outline_length+
+            '" height="'+outline_width+
+            '" fill="url(#fadeToLeft)" stroke-width="0" />';
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+(screen_width-left_offset-right_offset)+
+            '" y="'+top_offset+
+            '" width="'+outline_width+
+            '" height="'+outline_length+
+            '" fill="url(#fadeToDown)" stroke-width="0" />';
+
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+left_offset+
+            '" y="'+(screen_height-outline_length-top_offset)+
+            '" width="'+outline_width+
+            '" height="'+outline_length+
+            '" fill="url(#fadeToUp)" stroke-width="0" />';
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+left_offset+
+            '" y="'+(screen_height-top_offset-bottom_offset)+
+            '" width="'+outline_length+
+            '" height="'+outline_width+
+            '" fill="url(#fadeToRight)" stroke-width="0" />';
+
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+(screen_width-outline_length-left_offset)+
+            '" y="'+(screen_height-top_offset-bottom_offset)+
+            '" width="'+outline_length+
+            '" height="'+outline_width+
+            '" fill="url(#fadeToLeft)" stroke-width="0" />';
+            document.getElementById("svgstuff").innerHTML += 
+            '<rect x="'+(screen_width-left_offset-right_offset)+
+            '" y="'+(screen_height-outline_length-top_offset)+
+            '" width="'+outline_width+
+            '" height="'+outline_length+
+            '" fill="url(#fadeToUp)" stroke-width="0" />';
+
+
             console.log('page is fully loaded');
             changeChart();
         };
