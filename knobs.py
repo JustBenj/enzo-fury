@@ -39,8 +39,8 @@ while True:
 
 
     if old_left_state != left_state or old_right_state != right_state:
-        print("Left: %d", lka + lkb)
-        print("Right: %d", rka + rkb)
+        print("Left: %d" % (lka + lkb))
+        print("Right: %d" % (rka + rkb))
 
 
 
