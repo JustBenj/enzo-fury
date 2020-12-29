@@ -34,7 +34,7 @@
 
         </svg>
         <div class="screenContents">
-            <table id="modesTable" class="hardware-table" style="width:94%;padding-left:3%;padding-top:3%">
+            <table id="modesTable" class="hardware-table" style="width:90%;padding-left:5%;padding-top:5%">
                 <tbody>
                     <tr>
                         <th width="12.5%" id="summaryModeSelector" class="selected">summary</th>
@@ -151,6 +151,13 @@
                     mode: 'nearest',
                     intersect: true
                 },
+                animation: {
+                    duration: 0 // general animation time
+                },
+                hover: {
+                    animationDuration: 0 // duration of animations when hovering an item
+                },
+                responsiveAnimationDuration: 0, // animation duration after a resize
                 scales:{
                     xAxes: [{
                         display: true,
@@ -237,7 +244,8 @@
                 title: {
                     display: true,
                     text: 'CPU util (%)',
-                    fontColor: '#05ac05'
+                    fontColor: '#05ac05',
+                    position: 'left'
                 },
                 legend: {
                     display: false
@@ -247,10 +255,17 @@
                 plugins: {
                     labels: {
                         render: 'value',
-                        position: 'outside',
+                        position: 'default',
                         fontColor: '#05ac05'
                     }
-                }
+                },
+                animation: {
+                    duration: 0 // general animation time
+                },
+                hover: {
+                    animationDuration: 0 // duration of animations when hovering an item
+                },
+                responsiveAnimationDuration: 0 // animation duration after a resize
             },
             {
                 responsive: true,
@@ -258,7 +273,8 @@
                 title: {
                     display: true,
                     text: 'GPU util (%)',
-                    fontColor: '#05ac05'
+                    fontColor: '#05ac05',
+                    position: 'right'
                 },
                 legend: {
                     display: false
@@ -268,10 +284,17 @@
                 plugins: {
                     labels: {
                         render: 'value',
-                        position: 'outside',
+                        position: 'default',
                         fontColor: '#05ac05'
                     }
-                }
+                },
+                animation: {
+                    duration: 0 // general animation time
+                },
+                hover: {
+                    animationDuration: 0 // duration of animations when hovering an item
+                },
+                responsiveAnimationDuration: 0 // animation duration after a resize
             },
             {
                 responsive: true,
@@ -279,7 +302,8 @@
                 title: {
                     display: true,
                     text: 'RAM used (%)',
-                    fontColor: '#05ac05'
+                    fontColor: '#05ac05',
+                    position: 'left'
                 },
                 legend: {
                     display: false
@@ -289,10 +313,17 @@
                 plugins: {
                     labels: {
                         render: 'value',
-                        position: 'outside',
+                        position: 'default',
                         fontColor: '#05ac05'
                     }
-                }
+                },
+                animation: {
+                    duration: 0 // general animation time
+                },
+                hover: {
+                    animationDuration: 0 // duration of animations when hovering an item
+                },
+                responsiveAnimationDuration: 0 // animation duration after a resize
             },
             {
                 responsive: true,
@@ -300,7 +331,8 @@
                 title: {
                     display: true,
                     text: 'HDD used (%)',
-                    fontColor: '#05ac05'
+                    fontColor: '#05ac05',
+                    position: 'right'
                 },
                 legend: {
                     display: false
@@ -310,10 +342,17 @@
                 plugins: {
                     labels: {
                         render: 'value',
-                        position: 'outside',
+                        position: 'default',
                         fontColor: '#05ac05'
                     }
-                }
+                },
+                animation: {
+                    duration: 0 // general animation time
+                },
+                hover: {
+                    animationDuration: 0 // duration of animations when hovering an item
+                },
+                responsiveAnimationDuration: 0 // animation duration after a resize
             }
         ];
         
@@ -618,7 +657,6 @@
             else if(modeIndSelected == 1){
                 if(subModeSelected == 0){
                     datasets[0].data = cpuUtilization;
-                    console.log("updated");
                 }
                 else if(subModeSelected == 1){
                     datasets[0].data = cpuTemperatures;
@@ -750,12 +788,11 @@
         }
 
         document.addEventListener('keypress', keyPress);
-        window.setInterval(addRandomData, 500);
+        window.setInterval(addRandomData, 2500);
         window.setInterval(function(){
             changePicture(1);
-        }, 1000);
+        }, 5000);
         window.onload = (event) => {
-            console.log(document.getElementById("svgstuff").innerHTML);
             /*
             <rect x="4" y="4" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
             <rect x="4" y="4" width="4" height="100" fill="url(#fadeToDown)" stroke-width="0" />
@@ -769,8 +806,8 @@
             <rect x="376" y="312" width="100" height="4" fill="url(#fadeToLeft)" stroke-width="0" />
             <rect x="472" y="216" width="4" height="100" fill="url(#fadeToUp)" stroke-width="0" />
             */
-            left_offset = 10;
-            top_offset = 10;
+            left_offset = 20;
+            top_offset = 20;
             bottom_offset = 4;
             right_offset = 4;
             screen_width = 480;

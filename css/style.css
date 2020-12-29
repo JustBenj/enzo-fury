@@ -19,18 +19,19 @@ body{
 }
 
 .row{
-    height: 120px;
+    height: 100px;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
 .column{
-    width: 220px;
+    width: 150px;
     height: 100%;
     float: left;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 50px;
 }
 svg{
     height:320px;
