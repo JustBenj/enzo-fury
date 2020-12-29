@@ -23,6 +23,12 @@ left_state = 0
 old_right_state = 0
 right_state = 0
 
+CCW = 0
+CW = 1
+
+left_direction = CCW
+right_direction = CCW
+
 while True:
     time.sleep(0.02)
     
@@ -37,11 +43,47 @@ while True:
     old_right_state = right_state
     right_state = rka + rkb
 
+    if old_left_state != left_state:
+        if old_left_state == 0:
+            if left_state == 1:
+                left_direction = CW
+            if left_state == 2:
+                left_direction = CCW
+        if old_left_state == 1:
+            if left_state == 0:
+                left_direction = CCW
+            if left_state == 2:
+                left_direction = CW
+        if old_left_state == 2:
+            if left_state == 1:
+                left_direction = CCW
+            if left_state == 0:
+                left_direction = CW
 
-    if old_left_state != left_state or old_right_state != right_state:
-        print("Left: %d" % (lka + lkb))
-        print("Right: %d" % (rka + rkb))
+        print("Left: %d" % left_direction)
+        print("\n")
 
+    if old_right_state != right_state:
+        if old_right_state == 0:
+            if right_state == 1:
+                right_direction = CW
+            if right_state == 2:
+                right_direction = CCW
+        if old_right_state == 1:
+            if right_state == 0:
+                right_direction = CCW
+            if right_state == 2:
+                right_direction = CW
+        if old_right_state == 2:
+            if right_state == 1:
+                right_direction = CCW
+            if right_state == 0:
+                right_direction = CW
+
+        print("Right: %d" % right_direction)
+        print("\n")
+
+    
 
 
 
