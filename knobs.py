@@ -7,8 +7,8 @@ import time
 left_knob_a = 26 # white
 left_knob_b = 21 # black
 
-right_knob_a =  # orange
-right_knob_b =  # green
+right_knob_a = 20 # orange
+right_knob_b = 19 # green
 
 GPIO.setmode(GPIO.BCM)
 
