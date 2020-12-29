@@ -645,6 +645,40 @@
             }
         }
 
+        function parseJSON(jsonData){
+            cpuTemperatures.push(Number(jsonData['Children'][0]['Children'][1]['Children'][1]['Children'][2]["Value"]).split(" ")[0]);   
+            cpuUtilization.push(Number(jsonData['Children'][0]['Children'][1]['Children'][3]['Children'][0]["Value"]).split(" ")[0]);             
+            
+            if(cpuUtilization.length > labels.length){
+                cpuUtilization.shift();
+            }
+            gpuUtilization.push(Math.random() * 100);             
+            if(gpuUtilization.length > labels.length){
+                gpuUtilization.shift();
+            }
+            cpuTemperatures.push(Math.random() * 40 + 20);             
+            if(cpuTemperatures.length > labels.length){
+                cpuTemperatures.shift();
+            }
+            gpuTemperatures.push(Math.random() * 40 + 20);             
+            if(gpuTemperatures.length > labels.length){
+                gpuTemperatures.shift();
+            }
+            cpuPowers.push(Math.random() * 40 + 5);             
+            if(cpuPowers.length > labels.length){
+                cpuPowers.shift();
+            }
+            gpuPowers.push(Math.random() * 350 + 0);             
+            if(gpuPowers.length > labels.length){
+                gpuPowers.shift();
+            }
+            currentRamUse = (Math.random() * 16).toFixed(2);
+            currentAvailableRam = (16 - currentRamUse).toFixed(2);
+            currentUsedHddSpace = (Math.random() * 100).toFixed(2);
+            
+            updateChartData();
+        }
+
         function updateChartData(){
             if(modeIndSelected == 0){
                 summaryDatasets[0].data = [cpuUtilization[cpuUtilization.length - 1].toFixed(2), 

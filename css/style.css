@@ -54,6 +54,7 @@ svg{
     /*width:100vw;*/
     width:480px;
     z-index: 0;
+    cursor: none;
 }
 
 .screenContents{
