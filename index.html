@@ -104,6 +104,7 @@
         var hddInfo = ["utilization"];    
         var modesHTML = document.getElementById("modesTable").children[0].children[0].children;
         var subModesHTML = null;
+        const socket = new WebSocket('ws://localhost:8069');
 
         var mychart = document.getElementById("myChart");
 
@@ -643,6 +644,7 @@
             else if(modeIndSelected == 5){
 
             }
+            updateChartData();
         }
 
         function parseJSON(jsonData){
@@ -656,7 +658,6 @@
             if(gpuUtilization.length > labels.length){
                 gpuUtilization.shift();
             }
-            cpuTemperatures.push(Math.random() * 40 + 20);             
             if(cpuTemperatures.length > labels.length){
                 cpuTemperatures.shift();
             }
@@ -764,12 +765,14 @@
         function playModeChange(){
             var sound = document.getElementById("changeModeAudio");
             sound.pause();
+            sound.muted = true;
             sound.currentTime = 0;
             sound.play();
         }
         function playSubModeChange(){
             var sound = document.getElementById("changeSubModeAudio");
             sound.pause();
+            sound.muted = true;
             sound.currentTime = 0;
             sound.play();
         }
@@ -822,10 +825,31 @@
         }
 
         document.addEventListener('keypress', keyPress);
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            console.log("Server connected");
+            //socket.send('Server!');
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            console.log('Message from server ', event.data);
+            var j = JSON.parse(event.data);
+            if("left" in j){
+                //splayModeChange();
+                changeMode((parseInt(j["left"])*2) - 1);
+                changePictureMode(parseInt(j["left"]));
+            }
+            if("right" in j){
+                //playSubModeChange();
+                changeSubMode((parseInt(j["right"])*2) - 1);
+            }
+        });
         window.setInterval(addRandomData, 2500);
         window.setInterval(function(){
             changePicture(1);
         }, 5000);
+
         window.onload = (event) => {
             /*
             <rect x="4" y="4" width="100" height="4" fill="url(#fadeToRight)" stroke-width="0" />
