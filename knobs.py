@@ -30,7 +30,7 @@ left_direction = CCW
 right_direction = CCW
 
 while True:
-    time.sleep(0.02)
+    time.sleep(0.1)
     
     lka = (1-GPIO.input(left_knob_a))
     lkb = (1-GPIO.input(left_knob_b))
@@ -41,9 +41,9 @@ while True:
 
     old_right_state = right_state
     right_state = rka + rkb
-
+    print(lka)
     if old_left_state != left_state:
-        print(lka)
+        
         if old_left_state == 0:
             if left_state == 1:
                 left_direction = CW
