@@ -37,11 +37,13 @@ while True:
     rka = GPIO.input(right_knob_a)
     rkb = GPIO.input(right_knob_b)
     old_left_state = left_state
-    left_state = lka + lkb
+    left_state = (lka<<1)+lkb
 
     old_right_state = right_state
-    right_state = rka + rkb
-    print("lka: %d lkb: %d rka: %d rkb %d" % (lka, lkb, rka, rkb))
+    right_state = (rka<<1)+rkb
+
+    #print("lka: %d lkb: %d rka: %d rkb %d" % (lka, lkb, rka, rkb))
+    print("left: %d right %d" % (left_state, right_state))
     if old_left_state != left_state:
         
         if old_left_state == 0:
