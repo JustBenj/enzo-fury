@@ -827,13 +827,13 @@
         document.addEventListener('keypress', keyPress);
         // Connection opened
         socket.addEventListener('open', function (event) {
-            console.log("Server connected");
+            //console.log("Server connected");
             //socket.send('Server!');
         });
 
         // Listen for messages
         socket.addEventListener('message', function (event) {
-            console.log('Message from server ', event.data);
+            //console.log('Message from server ', event.data);
             var j = JSON.parse(event.data);
             if("left" in j){
                 //splayModeChange();
