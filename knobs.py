@@ -7,8 +7,8 @@ import time
 left_knob_a = 26 # white
 left_knob_b = 21 # black
 
-right_knob_a = 20 # orange
-right_knob_b = 19 # green
+right_knob_a = 19 # orange
+right_knob_b = 20 # green
 
 GPIO.setmode(GPIO.BCM)
 
@@ -43,47 +43,64 @@ while True:
     right_state = (rka<<1)+rkb
 
     #print("lka: %d lkb: %d rka: %d rkb %d" % (lka, lkb, rka, rkb))
-    print("left: %d right %d" % (left_state, right_state))
+    #print("left: %d right %d" % (left_state, right_state))
     if old_left_state != left_state:
         
         if old_left_state == 0:
             if left_state == 1:
                 left_direction = CW
-            if left_state == 2:
+            if left_state == 2 or left_state == 3:
                 left_direction = CCW
+
         if old_left_state == 1:
             if left_state == 0:
                 left_direction = CCW
-            if left_state == 2:
+            if left_state == 2 or left_state == 3:
                 left_direction = CW
+
         if old_left_state == 2:
             if left_state == 1:
                 left_direction = CCW
             if left_state == 0:
                 left_direction = CW
 
-        #print("Left: %d" % left_direction)
-        #print("\n")
+        if old_left_state == 3:
+            if left_state == 1:
+                left_direction = CCW
+            if left_state == 0:
+                left_direction = CW
+
+        print("Left: %d" % left_direction)
+        print("\n")
 
     if old_right_state != right_state:
+        
         if old_right_state == 0:
             if right_state == 1:
                 right_direction = CW
-            if right_state == 2:
+            if right_state == 2 or right_state == 3:
                 right_direction = CCW
+
         if old_right_state == 1:
             if right_state == 0:
                 right_direction = CCW
-            if right_state == 2:
+            if right_state == 2 or right_state == 3:
                 right_direction = CW
+
         if old_right_state == 2:
             if right_state == 1:
                 right_direction = CCW
             if right_state == 0:
                 right_direction = CW
 
-        #print("Right: %d" % right_direction)
-        #print("\n")
+        if old_right_state == 3:
+            if right_state == 1:
+                right_direction = CCW
+            if right_state == 0:
+                right_direction = CW
+
+        print("Right: %d" % right_direction)
+        print("\n")
 
     
 
