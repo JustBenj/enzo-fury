@@ -1,0 +1,650 @@
+<body>
+
+    <div class="header">
+
+      <span id="toolbar" class="ui-widget-header ui-corner-all">
+        <button id="refresh" data-bind="click: update" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Refresh</span></button>
+        <input type="checkbox" id="auto_refresh" data-bind="checked: auto_refresh" class="ui-helper-hidden-accessible"><label for="auto_refresh" aria-pressed="false" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false"><span class="ui-button-text">Auto Refresh</span></label>
+        &nbsp;<div id="slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 22.2222%;"></a></div>&nbsp;&nbsp;&nbsp;&nbsp;<span for="auto_refresh" id="lbl">3s</span>
+      </span>
+    </div>
+
+    <div class="main">
+      <table data-bind="treeTable: flattened, treeOptions: { initialState: 'expanded', clickableNodeNames: true } " class="treeTable">
+        <thead><tr><td>Sensor</td><td>Min</td><td>Value</td><td>Max</td>
+          </tr></thead><tbody data-bind="foreach: flattened">
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-1" class="initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/computer.png">&nbsp; DESKTOP-BM242J4</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-2" class="child-of-node-1 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 20px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/mainboard.png">&nbsp; MSI Z170A GAMING M5 (MS-7977)</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-3" class="child-of-node-2 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/chip.png">&nbsp; Nuvoton NCT6793D</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-4" class="child-of-node-3 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/voltage.png">&nbsp; Voltages</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-5" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; CPU VCore</td>
+              <td data-bind="text: Min">0.848 V</td>
+              <td data-bind="text: Value">0.848 V</td>
+              <td data-bind="text: Max">1.112 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-6" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #2</td>
+              <td data-bind="text: Min">1.016 V</td>
+              <td data-bind="text: Value">1.024 V</td>
+              <td data-bind="text: Max">1.024 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-7" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; AVCC</td>
+              <td data-bind="text: Min">3.424 V</td>
+              <td data-bind="text: Value">3.424 V</td>
+              <td data-bind="text: Max">3.424 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-8" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; 3VCC</td>
+              <td data-bind="text: Min">3.312 V</td>
+              <td data-bind="text: Value">3.328 V</td>
+              <td data-bind="text: Max">3.328 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-9" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #5</td>
+              <td data-bind="text: Min">1.008 V</td>
+              <td data-bind="text: Value">1.016 V</td>
+              <td data-bind="text: Max">1.016 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-10" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #6</td>
+              <td data-bind="text: Min">0.144 V</td>
+              <td data-bind="text: Value">0.144 V</td>
+              <td data-bind="text: Max">0.144 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-11" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #7</td>
+              <td data-bind="text: Min">0.952 V</td>
+              <td data-bind="text: Value">0.960 V</td>
+              <td data-bind="text: Max">0.960 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-12" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; 3VSB</td>
+              <td data-bind="text: Min">3.408 V</td>
+              <td data-bind="text: Value">3.408 V</td>
+              <td data-bind="text: Max">3.424 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-13" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; VTT</td>
+              <td data-bind="text: Min">0.992 V</td>
+              <td data-bind="text: Value">0.992 V</td>
+              <td data-bind="text: Max">0.992 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-14" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #11</td>
+              <td data-bind="text: Min">1.112 V</td>
+              <td data-bind="text: Value">1.112 V</td>
+              <td data-bind="text: Max">1.112 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-15" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #12</td>
+              <td data-bind="text: Min">1.048 V</td>
+              <td data-bind="text: Value">1.048 V</td>
+              <td data-bind="text: Max">1.048 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-16" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #13</td>
+              <td data-bind="text: Min">1.008 V</td>
+              <td data-bind="text: Value">1.016 V</td>
+              <td data-bind="text: Max">1.016 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-17" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #14</td>
+              <td data-bind="text: Min">0.600 V</td>
+              <td data-bind="text: Value">0.600 V</td>
+              <td data-bind="text: Max">0.600 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-18" class="child-of-node-4 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Voltage #15</td>
+              <td data-bind="text: Min">1.504 V</td>
+              <td data-bind="text: Value">1.504 V</td>
+              <td data-bind="text: Max">1.504 V</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-19" class="child-of-node-3 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/temperature.png">&nbsp; Temperatures</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-20" class="child-of-node-19 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; CPU Core</td>
+              <td data-bind="text: Min">26.5 °C</td>
+              <td data-bind="text: Value">26.5 °C</td>
+              <td data-bind="text: Max">35.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-21" class="child-of-node-19 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Temperature #2</td>
+              <td data-bind="text: Min">34.0 °C</td>
+              <td data-bind="text: Value">34.0 °C</td>
+              <td data-bind="text: Max">34.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-22" class="child-of-node-19 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Temperature #3</td>
+              <td data-bind="text: Min">28.0 °C</td>
+              <td data-bind="text: Value">28.0 °C</td>
+              <td data-bind="text: Max">28.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-23" class="child-of-node-19 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Temperature #4</td>
+              <td data-bind="text: Min">20.0 °C</td>
+              <td data-bind="text: Value">20.0 °C</td>
+              <td data-bind="text: Max">20.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-24" class="child-of-node-19 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Temperature #5</td>
+              <td data-bind="text: Min">23.0 °C</td>
+              <td data-bind="text: Value">23.0 °C</td>
+              <td data-bind="text: Max">23.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-25" class="child-of-node-19 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Temperature #6</td>
+              <td data-bind="text: Min">-1.0 °C</td>
+              <td data-bind="text: Value">-1.0 °C</td>
+              <td data-bind="text: Max">-1.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-26" class="child-of-node-3 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/fan.png">&nbsp; Fans</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-27" class="child-of-node-26 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan #2</td>
+              <td data-bind="text: Min">725 RPM</td>
+              <td data-bind="text: Value">727 RPM</td>
+              <td data-bind="text: Max">739 RPM</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-28" class="child-of-node-3 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/control.png">&nbsp; Controls</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-29" class="child-of-node-28 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan Control #1</td>
+              <td data-bind="text: Min">12.9 %</td>
+              <td data-bind="text: Value">12.9 %</td>
+              <td data-bind="text: Max">12.9 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-30" class="child-of-node-28 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan Control #2</td>
+              <td data-bind="text: Min">12.9 %</td>
+              <td data-bind="text: Value">12.9 %</td>
+              <td data-bind="text: Max">12.9 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-31" class="child-of-node-28 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan Control #3</td>
+              <td data-bind="text: Min">60.0 %</td>
+              <td data-bind="text: Value">60.0 %</td>
+              <td data-bind="text: Max">60.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-32" class="child-of-node-28 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan Control #4</td>
+              <td data-bind="text: Min">60.0 %</td>
+              <td data-bind="text: Value">60.0 %</td>
+              <td data-bind="text: Max">60.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-33" class="child-of-node-28 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan Control #5</td>
+              <td data-bind="text: Min">60.0 %</td>
+              <td data-bind="text: Value">60.0 %</td>
+              <td data-bind="text: Max">60.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-34" class="child-of-node-28 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 77px;"><img src="images/transparent.png">&nbsp; Fan Control #6</td>
+              <td data-bind="text: Min">49.8 %</td>
+              <td data-bind="text: Value">49.8 %</td>
+              <td data-bind="text: Max">49.8 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-35" class="child-of-node-1 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 20px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/cpu.png">&nbsp; BENJIISAWESOME</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-36" class="child-of-node-35 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/clock.png">&nbsp; Clocks</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-37" class="child-of-node-36 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; Bus Speed</td>
+              <td data-bind="text: Min">100.1 MHz</td>
+              <td data-bind="text: Value">100.1 MHz</td>
+              <td data-bind="text: Max">100.1 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-38" class="child-of-node-36 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #1</td>
+              <td data-bind="text: Min">800.9 MHz</td>
+              <td data-bind="text: Value">800.9 MHz</td>
+              <td data-bind="text: Max">3704.2 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-39" class="child-of-node-36 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #2</td>
+              <td data-bind="text: Min">800.9 MHz</td>
+              <td data-bind="text: Value">800.9 MHz</td>
+              <td data-bind="text: Max">3804.3 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-40" class="child-of-node-36 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #3</td>
+              <td data-bind="text: Min">800.9 MHz</td>
+              <td data-bind="text: Value">3403.9 MHz</td>
+              <td data-bind="text: Max">3704.2 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-41" class="child-of-node-36 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #4</td>
+              <td data-bind="text: Min">800.9 MHz</td>
+              <td data-bind="text: Value">2502.9 MHz</td>
+              <td data-bind="text: Max">3704.2 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-42" class="child-of-node-35 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/temperature.png">&nbsp; Temperatures</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-43" class="child-of-node-42 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #1</td>
+              <td data-bind="text: Min">23.0 °C</td>
+              <td data-bind="text: Value">24.0 °C</td>
+              <td data-bind="text: Max">30.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-44" class="child-of-node-42 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #2</td>
+              <td data-bind="text: Min">24.0 °C</td>
+              <td data-bind="text: Value">26.0 °C</td>
+              <td data-bind="text: Max">35.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-45" class="child-of-node-42 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #3</td>
+              <td data-bind="text: Min">21.0 °C</td>
+              <td data-bind="text: Value">22.0 °C</td>
+              <td data-bind="text: Max">28.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-46" class="child-of-node-42 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #4</td>
+              <td data-bind="text: Min">22.0 °C</td>
+              <td data-bind="text: Value">22.0 °C</td>
+              <td data-bind="text: Max">27.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-47" class="child-of-node-42 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Package</td>
+              <td data-bind="text: Min">26.0 °C</td>
+              <td data-bind="text: Value">27.0 °C</td>
+              <td data-bind="text: Max">35.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-48" class="child-of-node-35 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/load.png">&nbsp; Load</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-49" class="child-of-node-48 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Total</td>
+              <td data-bind="text: Min">0.8 %</td>
+              <td data-bind="text: Value">2.3 %</td>
+              <td data-bind="text: Max">59.8 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-50" class="child-of-node-48 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #1</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">1.6 %</td>
+              <td data-bind="text: Max">66.7 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-51" class="child-of-node-48 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #2</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">3.1 %</td>
+              <td data-bind="text: Max">60.9 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-52" class="child-of-node-48 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #3</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">1.6 %</td>
+              <td data-bind="text: Max">60.9 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-53" class="child-of-node-48 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Core #4</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">3.1 %</td>
+              <td data-bind="text: Max">59.4 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-54" class="child-of-node-35 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/power.png">&nbsp; Powers</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-55" class="child-of-node-54 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Package</td>
+              <td data-bind="text: Min">5.7 W</td>
+              <td data-bind="text: Value">5.9 W</td>
+              <td data-bind="text: Max">29.9 W</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-56" class="child-of-node-54 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Cores</td>
+              <td data-bind="text: Min">2.2 W</td>
+              <td data-bind="text: Value">2.5 W</td>
+              <td data-bind="text: Max">22.4 W</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-57" class="child-of-node-54 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU Graphics</td>
+              <td data-bind="text: Min">0.0 W</td>
+              <td data-bind="text: Value">0.0 W</td>
+              <td data-bind="text: Max">0.0 W</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-58" class="child-of-node-54 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; CPU DRAM</td>
+              <td data-bind="text: Min">0.5 W</td>
+              <td data-bind="text: Value">0.5 W</td>
+              <td data-bind="text: Max">1.1 W</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-59" class="child-of-node-1 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 20px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/ram.png">&nbsp; Generic Memory</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-60" class="child-of-node-59 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/load.png">&nbsp; Load</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-61" class="child-of-node-60 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; Memory</td>
+              <td data-bind="text: Min">12.6 %</td>
+              <td data-bind="text: Value">14.4 %</td>
+              <td data-bind="text: Max">14.4 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-62" class="child-of-node-59 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/power.png">&nbsp; Data</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-63" class="child-of-node-62 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; Used Memory</td>
+              <td data-bind="text: Min">2.0 GB</td>
+              <td data-bind="text: Value">2.3 GB</td>
+              <td data-bind="text: Max">2.3 GB</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-64" class="child-of-node-62 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; Available Memory</td>
+              <td data-bind="text: Min">13.7 GB</td>
+              <td data-bind="text: Value">13.7 GB</td>
+              <td data-bind="text: Max">13.9 GB</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-65" class="child-of-node-1 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 20px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/nvidia.png">&nbsp; NVIDIA GeForce GTX 1070</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-66" class="child-of-node-65 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/clock.png">&nbsp; Clocks</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-67" class="child-of-node-66 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Core</td>
+              <td data-bind="text: Min">139.0 MHz</td>
+              <td data-bind="text: Value">949.0 MHz</td>
+              <td data-bind="text: Max">1582.0 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-68" class="child-of-node-66 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Memory</td>
+              <td data-bind="text: Min">405.0 MHz</td>
+              <td data-bind="text: Value">3802.5 MHz</td>
+              <td data-bind="text: Max">4006.8 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-69" class="child-of-node-66 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Shader</td>
+              <td data-bind="text: Min">278.0 MHz</td>
+              <td data-bind="text: Value">1898.0 MHz</td>
+              <td data-bind="text: Max">3164.0 MHz</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-70" class="child-of-node-65 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/temperature.png">&nbsp; Temperatures</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-71" class="child-of-node-70 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Core</td>
+              <td data-bind="text: Min">39.0 °C</td>
+              <td data-bind="text: Value">39.0 °C</td>
+              <td data-bind="text: Max">40.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-72" class="child-of-node-65 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/load.png">&nbsp; Load</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-73" class="child-of-node-72 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Core</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">0.0 %</td>
+              <td data-bind="text: Max">7.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-74" class="child-of-node-72 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Frame Buffer</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">0.0 %</td>
+              <td data-bind="text: Max">8.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-75" class="child-of-node-72 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Video Engine</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">0.0 %</td>
+              <td data-bind="text: Max">0.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-76" class="child-of-node-72 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Bus Interface</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">0.0 %</td>
+              <td data-bind="text: Max">1.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-77" class="child-of-node-72 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Memory</td>
+              <td data-bind="text: Min">2.7 %</td>
+              <td data-bind="text: Value">3.8 %</td>
+              <td data-bind="text: Max">4.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-78" class="child-of-node-65 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/fan.png">&nbsp; Fans</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-79" class="child-of-node-78 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU</td>
+              <td data-bind="text: Min">0 RPM</td>
+              <td data-bind="text: Value">0 RPM</td>
+              <td data-bind="text: Max">0 RPM</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-80" class="child-of-node-65 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/control.png">&nbsp; Controls</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-81" class="child-of-node-80 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Fan</td>
+              <td data-bind="text: Min">0.0 %</td>
+              <td data-bind="text: Value">0.0 %</td>
+              <td data-bind="text: Max">0.0 %</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-82" class="child-of-node-65 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/power.png">&nbsp; Data</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-83" class="child-of-node-82 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Memory Free</td>
+              <td data-bind="text: Min">7862.1 MB</td>
+              <td data-bind="text: Value">7877.2 MB</td>
+              <td data-bind="text: Max">7967.9 MB</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-84" class="child-of-node-82 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Memory Used</td>
+              <td data-bind="text: Min">224.1 MB</td>
+              <td data-bind="text: Value">314.8 MB</td>
+              <td data-bind="text: Max">329.9 MB</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-85" class="child-of-node-82 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; GPU Memory Total</td>
+              <td data-bind="text: Min">8192.0 MB</td>
+              <td data-bind="text: Value">8192.0 MB</td>
+              <td data-bind="text: Max">8192.0 MB</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-86" class="child-of-node-1 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 20px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/hdd.png">&nbsp; WDC  WDS100T2B0B-00YS70</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-87" class="child-of-node-86 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/temperature.png">&nbsp; Temperatures</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-88" class="child-of-node-87 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; Temperature</td>
+              <td data-bind="text: Min">33.0 °C</td>
+              <td data-bind="text: Value">33.0 °C</td>
+              <td data-bind="text: Max">33.0 °C</td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-89" class="child-of-node-86 initialized parent expanded">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 39px; cursor: pointer;"><span style="margin-left: -19px; padding-left: 19px" class="expander"></span><img src="images_icon/load.png">&nbsp; Load</td>
+              <td data-bind="text: Min"></td>
+              <td data-bind="text: Value"></td>
+              <td data-bind="text: Max"></td>
+            </tr>
+         
+            <tr data-bind="attr: { 'id': 'node-' + id(), 'class': parent.id()?'child-of-node-' + parent.id():'' }" id="node-90" class="child-of-node-89 initialized">
+              <td data-bind="html: '<img src=' + ImageURL() + ' />&nbsp; ' + Text()" style="padding-left: 58px;"><img src="images/transparent.png">&nbsp; Used Space</td>
+              <td data-bind="text: Min">6.7 %</td>
+              <td data-bind="text: Value">6.7 %</td>
+              <td data-bind="text: Max">6.7 %</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+   
+ 
+</body>
