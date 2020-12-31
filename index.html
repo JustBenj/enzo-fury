@@ -854,7 +854,7 @@
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-                console.log(otherDOM);
+                console.log(otherDOM.children);
             });
         }, 2500);
         
