@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/Chart.min.css">
     <script src="include/Chart.bundle.min.js"></script>
+    <script src="include/jquery.min.js"></script>
     <script src="include/Chart.PieChartLabels.min.js"></script>
 </head>
 <body>
@@ -846,6 +847,15 @@
             }
         });
         window.setInterval(addRandomData, 2500);
+        window.setInterval(function(){
+
+            var readingsIpPort = "http://192.168.0.223:8085";
+
+            $.get(readingsIpPort, null, function(text){
+                console.log(text);
+            });
+        }, 2500);
+        
         window.setInterval(function(){
             changePicture(1);
         }, 5000);
