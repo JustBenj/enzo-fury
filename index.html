@@ -854,9 +854,28 @@
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
+
                 var cpuTemp = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[19];
-                console.log(cpuTemp);
+                .children[0].children[1].children[46].children[2].innerHTML;
+                var cpuUtil = otherDOM.children[0].children[1].children[1]
+                .children[0].children[1].children[48].children[2].innerHTML;
+                var cpuWatts = otherDOM.children[0].children[1].children[1]
+                .children[0].children[1].children[54].children[2].innerHTML;
+
+                var gpuTemp = otherDOM.children[0].children[1].children[1]
+                .children[0].children[1].children[70].children[2].innerHTML;
+                var gpuUtil = otherDOM.children[0].children[1].children[1]
+                .children[0].children[1].children[72].children[2].innerHTML;
+                //var gpuTemp = otherDOM.children[0].children[1].children[1]
+                //.children[0].children[1].children[19].children[2].innerHTML;
+
+                var ramUse = otherDOM.children[0].children[1].children[1]
+                .children[0].children[1].children[60].children[2].innerHTML;
+                var hddUse = otherDOM.children[0].children[1].children[1]
+                .children[0].children[1].children[89].children[2].innerHTML;
+
+                console.log(cpuTemp + " " + cpuUtil + " " + cpuWatts + " " + 
+                gpuTemp + " " + gpuUtil + " " + ramUse + " " + hddUse);
             });
         }, 2500);
         
