@@ -852,7 +852,9 @@
             var readingsIpPort = "http://192.168.0.223:8085";
 
             $.get(readingsIpPort, null, function(text){
-                console.log(text);
+                parser = new DOMParser();
+                var otherDOM = parser.parseFromString(text);
+                console.log(otherDOM);
             });
         }, 2500);
         
