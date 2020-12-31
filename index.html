@@ -846,11 +846,13 @@
                 changePictureMode(parseInt(j["right"]));
             }
         });
-        window.setInterval(addRandomData, 2500);
+        //window.setInterval(addRandomData, 2500);
         window.setInterval(function(){
 
             //var readingsIpPort = "http://192.168.0.223:8085";
+            //var readingsIpPort = "http://192.168.1.17:8085";
             var readingsIpPort = "http://localhost:8000/ex.html";
+
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
@@ -881,9 +883,39 @@
                 gpuUtil = Number(gpuUtil.split(" ")[0]);
                 ramUse = Number(ramUse.split(" ")[0]);
                 hddUse = Number(hddUse.split(" ")[0]);
+
+                //console.log(cpuTemp + " " + cpuUtil + " " + cpuWatts + " " + 
+                //gpuTemp + " " + gpuUtil + " " + ramUse + " " + hddUse);
+
+                cpuUtilization.push(cpuUtil);             
+                if(cpuUtilization.length > labels.length){
+                    cpuUtilization.shift();
+                }
+                gpuUtilization.push(gpuUtil);             
+                if(gpuUtilization.length > labels.length){
+                    gpuUtilization.shift();
+                }
+                cpuTemperatures.push(cpuTemp);             
+                if(cpuTemperatures.length > labels.length){
+                    cpuTemperatures.shift();
+                }
+                gpuTemperatures.push(gpuTemp);             
+                if(gpuTemperatures.length > labels.length){
+                    gpuTemperatures.shift();
+                }
+                cpuPowers.push(cpuWatts);             
+                if(cpuPowers.length > labels.length){
+                    cpuPowers.shift();
+                }
+                gpuPowers.push(Math.random() * 350 + 0);             
+                if(gpuPowers.length > labels.length){
+                    gpuPowers.shift();
+                }
+                currentRamUse = (ramUse).toFixed(2);
+                currentAvailableRam = (100 - currentRamUse).toFixed(2);
+                currentUsedHddSpace = (hddUse).toFixed(2);
                 
-                console.log(cpuTemp + " " + cpuUtil + " " + cpuWatts + " " + 
-                gpuTemp + " " + gpuUtil + " " + ramUse + " " + hddUse);
+                updateChartData();
             });
         }, 2500);
         
