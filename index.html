@@ -838,11 +838,11 @@
             if("left" in j){
                 //splayModeChange();
                 changeMode((parseInt(j["left"])*2) - 1);
-                changePictureMode(parseInt(j["left"]));
             }
             if("right" in j){
                 //playSubModeChange();
                 changeSubMode((parseInt(j["right"])*2) - 1);
+                changePictureMode(parseInt(j["right"]));
             }
         });
         window.setInterval(addRandomData, 2500);
