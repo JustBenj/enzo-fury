@@ -854,8 +854,9 @@
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-                var cpuTemp = otherDOM.children[0].children[1].
-                children[0].children[0].children[19];
+                var cpuTemp = otherDOM.children[0];
+                //.children[1].
+                //children[0].children[0].children[19];
                 console.log(cpuTemp);
             });
         }, 2500);
