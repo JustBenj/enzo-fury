@@ -874,6 +874,14 @@
                 var hddUse = otherDOM.children[0].children[1].children[1]
                 .children[0].children[1].children[89].children[2].innerHTML;
 
+                cpuTemp = Number(cpuTemp.split(" ")[0]);
+                cpuUtil = Number(cpuUtil.split(" " )[0]);
+                cpuWatts = Number(cpuWatts.split(" ")[0]);
+                gpuTemp = Number(gpuTemp.split(" ")[0]);
+                gpuUtil = Number(gpuUtil.split(" ")[0]);
+                ramUse = Number(ramUse.split(" ")[0]);
+                hddUse = Number(hddUse.split(" ")[0]);
+                
                 console.log(cpuTemp + " " + cpuUtil + " " + cpuWatts + " " + 
                 gpuTemp + " " + gpuUtil + " " + ramUse + " " + hddUse);
             });
