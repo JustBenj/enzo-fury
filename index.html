@@ -849,12 +849,14 @@
         window.setInterval(addRandomData, 2500);
         window.setInterval(function(){
 
-            var readingsIpPort = "http://192.168.0.223:8085";
-
+            //var readingsIpPort = "http://192.168.0.223:8085";
+            var readingsIpPort = "http://localhost:8000/ex.html";
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-                console.log(otherDOM.children);
+                var cpuTemp = otherDOM.children[0].children[1].
+                children[0].children[0].children[19];
+                console.log(cpuTemp);
             });
         }, 2500);
         
