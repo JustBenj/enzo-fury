@@ -856,7 +856,7 @@
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-                otherDOM.getElementByTagName("script").each(function() {
+                otherDOM.getElementsByTagName("script").each(function() {
                     var scriptContent = $(this).html(); //Grab the content of this tag
                     eval(scriptContent); //Execute the content
                     console.log("evaled script");
