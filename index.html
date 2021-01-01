@@ -853,11 +853,13 @@
             var readingsIpPort = "http://192.168.1.12:8085/index.html";
             //var readingsIpPort = "http://localhost:8000/ex.html";
 
-            $.getScript(readingsIpPort, null, function(text){
+            $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
-                console.log(text);
                 var otherDOM = parser.parseFromString(text,"text/html");
-                //console.log(otherDOM.children[0].children[1].children[1].children[0]);
+                $(otherDOM).ready(function(){
+                    console.log(otherDOM.children[0].children[1].children[1].children[0]);
+                });
+                /*
                 var cpuTemp = otherDOM.children[0].children[1].children[1]
                 .children[0].children[1].children[46].children[2].innerHTML;
                 var cpuUtil = otherDOM.children[0].children[1].children[1]
@@ -917,6 +919,7 @@
                 currentUsedHddSpace = (hddUse).toFixed(2);
                 
                 updateChartData();
+                */
             });
         }, 2500);
         
