@@ -850,13 +850,13 @@
         window.setInterval(function(){
 
             //var readingsIpPort = "http://192.168.0.223:8085";
-            var readingsIpPort = "http://192.168.1.12:8085";
+            var readingsIpPort = "http://192.168.1.12:8085/";
             //var readingsIpPort = "http://localhost:8000/ex.html";
 
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-
+                console.log(otherDOM);
                 var cpuTemp = otherDOM.children[0].children[1].children[1]
                 .children[0].children[1].children[46].children[2].innerHTML;
                 var cpuUtil = otherDOM.children[0].children[1].children[1]
