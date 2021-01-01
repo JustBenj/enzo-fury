@@ -856,7 +856,7 @@
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-                console.log(otherDOM);
+                console.log(otherDOM.children[0].children[1].children[1].children[0].children[1]);
                 var cpuTemp = otherDOM.children[0].children[1].children[1]
                 .children[0].children[1].children[46].children[2].innerHTML;
                 var cpuUtil = otherDOM.children[0].children[1].children[1]
