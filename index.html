@@ -858,10 +858,10 @@
                 var otherDOM = parser.parseFromString(text,"text/html");
                 var scripts = otherDOM.getElementsByTagName("script")
                 for(ind in scripts) {
-                    console.log(ind);
-                    console.log(scripts[ind]);
-                    var scriptContent = $(scripts[ind]).html(); //Grab the content of this tag
-                    eval(scriptContent); //Execute the content
+                    if(ind >= 2){
+                        var scriptContent = $(scripts[ind]).html(); //Grab the content of this tag
+                        eval(scriptContent); //Execute the content
+                    }
                 }
                 console.log(otherDOM.children[0].children[1].children[1].children[0]);
                 
