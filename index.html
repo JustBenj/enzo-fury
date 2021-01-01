@@ -855,10 +855,9 @@
 
             $.getJSON(readingsIpPort, function(data){
                 console.log(data);
-                j = JSON.parse(data);
-                console.log(j);
+                //j = JSON.parse(data);
 
-                cpuTemp = Number(j["Children"][0]["Children"][1]["Children"][1]["Children"][4]["Value"].split(" ")[0]);
+                cpuTemp = Number(dataj["Children"][0]["Children"][1]["Children"][1]["Children"][4]["Value"].split(" ")[0]);
                 console.log(cpuTemp);
                 cpuUtil = Number(cpuUtil.split(" " )[0]);
                 cpuWatts = Number(cpuWatts.split(" ")[0]);
