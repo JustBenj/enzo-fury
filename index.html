@@ -854,17 +854,16 @@
             //var readingsIpPort = "http://localhost:8000/ex.html";
 
             $.getJSON(readingsIpPort, function(data){
-                console.log(data);
+                //console.log(data);
                 //j = JSON.parse(data);
 
                 cpuTemp = Number(data["Children"][0]["Children"][1]["Children"][1]["Children"][4]["Value"].split(" ")[0]);
-                console.log(cpuTemp);
-                cpuUtil = Number(cpuUtil.split(" " )[0]);
-                cpuWatts = Number(cpuWatts.split(" ")[0]);
-                gpuTemp = Number(gpuTemp.split(" ")[0]);
-                gpuUtil = Number(gpuUtil.split(" ")[0]);
-                ramUse = Number(ramUse.split(" ")[0]);
-                hddUse = Number(hddUse.split(" ")[0]);
+                cpuUtil = Number(data["Children"][0]["Children"][1]["Children"][2]["Children"][0]["Value"].split(" ")[0]);
+                cpuWatts = Number(data["Children"][0]["Children"][1]["Children"][3]["Children"][0]["Value"].split(" ")[0]);
+                gpuTemp = Number(data["Children"][0]["Children"][3]["Children"][1]["Children"][0]["Value"].split(" ")[0]);
+                gpuUtil = Number(data["Children"][0]["Children"][3]["Children"][2]["Children"][0]["Value"].split(" ")[0]);
+                ramUse = Number(data["Children"][0]["Children"][2]["Children"][0]["Children"][0]["Value"].split(" ")[0]);
+                hddUse = Number(data["Children"][0]["Children"][4]["Children"][1]["Children"][0]["Value"].split(" ")[0]);
 
                 //console.log(cpuTemp + " " + cpuUtil + " " + cpuWatts + " " + 
                 //gpuTemp + " " + gpuUtil + " " + ramUse + " " + hddUse);
