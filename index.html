@@ -853,7 +853,7 @@
             var readingsIpPort = "http://192.168.1.12:8085/";
             //var readingsIpPort = "http://localhost:8000/ex.html";
 
-            $.post(readingsIpPort, null, function(text){
+            $.getScript(readingsIpPort, null, function(text){
                 parser = new DOMParser();
                 console.log(text);
                 var otherDOM = parser.parseFromString(text,"text/html");
