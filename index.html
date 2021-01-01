@@ -857,7 +857,9 @@
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
                 
-                console.log(otherDOM.children[0].children[1].children[1].children[0]);
+                $(otherDOM).ready(function(){
+                    console.log(otherDOM.children[0].children[1].children[1].children[0]);
+                });
                 //console.log(status);
                 /*
                 var cpuTemp = otherDOM.children[0].children[1].children[1]
