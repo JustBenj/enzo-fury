@@ -857,6 +857,7 @@
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
                 var scripts = otherDOM.getElementsByTagName("script")
+                print(scripts.length);
                 for(ind in scripts) {
                     var scriptContent = $(scripts[ind]).html(); //Grab the content of this tag
                     eval(scriptContent); //Execute the content
