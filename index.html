@@ -850,43 +850,15 @@
         window.setInterval(function(){
 
             //var readingsIpPort = "http://192.168.0.223:8085";
-            var readingsIpPort = "http://192.168.1.12:8085/index.html";
+            var readingsIpPort = "http://192.168.1.12:8085/data.json";
             //var readingsIpPort = "http://localhost:8000/ex.html";
 
-            $.get(readingsIpPort, null, function(text){
-                parser = new DOMParser();
-                var otherDOM = parser.parseFromString(text,"text/html");
-                var scripts = otherDOM.getElementsByTagName("script")
-                for(ind in scripts) {
-                    if(ind >= 2){
-                        var scriptContent = $(scripts[ind]).html(); //Grab the content of this tag
-                        eval(scriptContent); //Execute the content
-                    }
-                }
-                console.log(otherDOM.children[0].children[1].children[1].children[0]);
-                
-                //console.log(status);
-                /*
-                var cpuTemp = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[46].children[2].innerHTML;
-                var cpuUtil = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[48].children[2].innerHTML;
-                var cpuWatts = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[54].children[2].innerHTML;
+            $.getJSON(readingsIpPort, function(data){
+                j = JSON.parse(data);
+                console.log(j);
 
-                var gpuTemp = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[70].children[2].innerHTML;
-                var gpuUtil = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[72].children[2].innerHTML;
-                //var gpuTemp = otherDOM.children[0].children[1].children[1]
-                //.children[0].children[1].children[19].children[2].innerHTML;
-
-                var ramUse = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[60].children[2].innerHTML;
-                var hddUse = otherDOM.children[0].children[1].children[1]
-                .children[0].children[1].children[89].children[2].innerHTML;
-
-                cpuTemp = Number(cpuTemp.split(" ")[0]);
+                cpuTemp = Number(j["Children"][0]["Children"][1]["Children"][1]["Children"][4]["Value"].split(" ")[0]);
+                console.log(cpuTemp);
                 cpuUtil = Number(cpuUtil.split(" " )[0]);
                 cpuWatts = Number(cpuWatts.split(" ")[0]);
                 gpuTemp = Number(gpuTemp.split(" ")[0]);
@@ -926,7 +898,7 @@
                 currentUsedHddSpace = (hddUse).toFixed(2);
                 
                 updateChartData();
-                */
+                
             });
         }, 2500);
         
