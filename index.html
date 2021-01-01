@@ -35,25 +35,7 @@
 
         </svg>
         <div class="screenContents">
-            <table id="modesTable" class="hardware-table" style="width:90%;padding-left:5%;padding-top:5%">
-                <tbody>
-                    <tr>
-                        <th width="12.5%" id="summaryModeSelector" class="selected">summary</th>
-                        <th width="12.5%" id="cpuModeSelector">CPU</th>
-                        <th width="12.5%" id="gpuModeSelector" style="z-index: 5;">GPU</th>
-                        <th width="12.5%" id="ramModeSelector">RAM</th>
-                        <th width="12.5%" id="hddModeSelector">HDD</th>
-                        <th width="12.5%" id="homeModeSelector">home</th>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table id="modesSubTable" class="modes-subtable">
-                <tbody>
-                    <tr>                
-                    </tr>
-                </tbody>
-            </table>
+            
 
             <div id="chartContainer" class="chart-container" style="width:90%; height:100%; margin: 0 auto;">
                 <canvas id="myChart"></canvas>
@@ -93,6 +75,27 @@
             <audio controls hidden id="changeSubModeAudio">
                 <source src="mp3/ui_pipboy_scroll.mp3" type="audio/mpeg">
             </audio>
+
+            <table id="modesTable" class="hardware-table" style="width:90%;padding-left:5%;padding-top:5%">
+                <tbody>
+                    <tr>
+                        <th width="12.5%" id="summaryModeSelector" class="selected">summary</th>
+                        <th width="12.5%" id="cpuModeSelector">CPU</th>
+                        <th width="12.5%" id="gpuModeSelector" style="z-index: 5;">GPU</th>
+                        <th width="12.5%" id="ramModeSelector">RAM</th>
+                        <th width="12.5%" id="hddModeSelector">HDD</th>
+                        <th width="12.5%" id="homeModeSelector">home</th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table id="modesSubTable" class="modes-subtable">
+                <tbody>
+                    <tr>                
+                    </tr>
+                </tbody>
+            </table>
+            
         </div>
     </div>
 
