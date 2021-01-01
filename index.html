@@ -855,12 +855,12 @@
 
             $.get(readingsIpPort, null, function(text){
                 parser = new DOMParser();
-                text.find("script").each(function() {
+                var otherDOM = parser.parseFromString(text,"text/html");
+                otherDOM.getElementByTagName("script").each(function() {
                     var scriptContent = $(this).html(); //Grab the content of this tag
                     eval(scriptContent); //Execute the content
                     console.log("evaled script");
                 });
-                var otherDOM = parser.parseFromString(text,"text/html");
                 console.log(otherDOM.children[0].children[1].children[1].children[0]);
                 
                 //console.log(status);
