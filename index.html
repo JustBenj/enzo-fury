@@ -853,12 +853,12 @@
             var readingsIpPort = "http://192.168.1.12:8085/index.html";
             //var readingsIpPort = "http://localhost:8000/ex.html";
 
-            $.get(readingsIpPort, null, function(text){
+            $.get(readingsIpPort, null, function(text, status){
                 parser = new DOMParser();
                 var otherDOM = parser.parseFromString(text,"text/html");
-                $(otherDOM).ready(function(){
-                    console.log(otherDOM.children[0].children[1].children[1].children[0]);
-                });
+                
+                //console.log(otherDOM.children[0].children[1].children[1].children[0]);
+                console.log(status);
                 /*
                 var cpuTemp = otherDOM.children[0].children[1].children[1]
                 .children[0].children[1].children[46].children[2].innerHTML;
